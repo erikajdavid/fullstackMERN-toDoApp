@@ -4,6 +4,9 @@ const { connectToMongoDB } = require("./database");
 
 const app = express();
 
+//middlewear to read JSON data
+app.use(express.json()); 
+
 const router = require("./routes");
 app.use("/api", router)
 
