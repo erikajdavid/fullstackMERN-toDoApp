@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Todo from "./Todo";
 
 function App() {
 
@@ -61,15 +62,8 @@ function App() {
       <div>
         {(todos.length > 0) && 
           todos.map((todo) => {
-            return(
-              <div key={todo._id}>
-                <p>{todo.todo}</p>
-              <div>
-                <button>
-                  {(todo.status ? "☑" : "☐")}
-                </button>
-              </div>
-            </div>
+            return (
+              <Todo todo={todo}/>
             )
           })
         }
