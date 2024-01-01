@@ -24,8 +24,13 @@ router.get("/todos", async (req, res) => {
 router.post("/todos", async (req, res) => {
     const collection = getCollection();
     //console.log(req.body);
+    let { todo } = req.body;
 
-    const { todo } = req.body;
+    if(!todo) {
+        return res.status(400).json({ message: "All fields are required" })
+    }
+
+    todo = (typeof todo === "string" ? todo : JSON.stringify(todo));
 
     const newTodo = await collection.insertOne({ todo, status: false})
     //false status means an incomplete task in our todo application
@@ -39,6 +44,10 @@ router.put("/todos/:id", async (req, res) => {
     const collection = getCollection();
     const _id = new ObjectId(req.params.id) //id because of line 38
     const { status } = req.body;
+
+    if(typeof status !== "boolean") {
+        return res.status(400).json({ message: "Invalid status" })
+    }
 
     const updatedTodo = await collection.updateOne({ _id }, { $set: { status: !status } })
 
