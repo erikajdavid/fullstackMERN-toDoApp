@@ -63,7 +63,7 @@ function App() {
         {(todos.length > 0) && 
           todos.map((todo) => {
             return (
-              <Todo todo={todo}/>
+              <Todo key={todo._id} todo={todo} setTodos={setTodos}/>
             )
           })
         }
