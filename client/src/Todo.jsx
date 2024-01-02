@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan} from "@fortawesome/free-solid-svg-icons";
 
 const Todo = ({ todo, setTodos }) => {
 
@@ -38,22 +40,17 @@ const Todo = ({ todo, setTodos }) => {
     };
 
     return(
-        <>
-            <div>
-                <p>{todo.todo}</p>
-                <div>
-                    <button onClick={() => deleteTodo(todo._id)}>
-                        <p>delete</p>
-                    </button>
-                    <button
-                        onClick={() => updateTodo(todo._id, todo.status)}
-                    >
-                        {(todo.status ? "☑" : "☐")}
-                    </button>
-
-                </div>
-            </div>
-        </>
+        <div className="todoWrapper">
+            <button
+                onClick={() => updateTodo(todo._id, todo.status)}
+            >
+                {(todo.status ? "☑" : "☐")}
+            </button>
+            <p>{todo.todo}</p>
+            <button onClick={() => deleteTodo(todo._id)}>
+                <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
+            </button>
+        </div>
       )
 }
 
